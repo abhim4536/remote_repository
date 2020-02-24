@@ -1,0 +1,54 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <title>To-Do Diary</title>
+    {% include 'diary/cdnlines.html' %}
+</head>
+<style>
+    img:hover{
+        transform: scale(1.1,1.1);
+    }
+</style>
+<body>
+<i ><a href="{% url 'create event' %}"><input style="position: relative; left: 80%;" type="submit" value="Add Event+" class="mt-5 btn btn-outline-success"></a></i>
+<div class="container">
+    {% for i in diary %}
+        <div class="row">
+            <div class="border-primary offset-3 col-md-6 " style="border: solid black 1px; margin-top: 40px; border-radius: 70px;">
+                <a href="{{ i.img.url }} " target="_blank"> <img src="{{ i.img.url }}" class="img-responsive border-info" style="border: solid 2px; width: 10vh; height: 10vh; position: relative; top:30px; left: 8%;" alt="img"></a>
+                <div class=" border-warning " style="border-radius: 15px; padding-top: 0; padding-left: 15px; margin-right: 43%; border: solid 1px;  position: relative; bottom:32px; left: 25%;">
+                    <i class="text-dark" style="position: relative; top: 15px; font-family: 'MV Boli',cursive; font-size: 15px;"> {{ i.title|capfirst }} </i>
+                    <div class="font-weight-bold" style="font-size: 15px; position: relative; top:43px; right: 36%;">{{ i.date }}</div>
+                </div>
+                <hr>
+                <div class="row">
+                    {% comment %}<div class="col-md-4 border-warning" style="border: solid 1px; margin-left: 35%; margin-bottom: 5%;">
+                    </div>{% endcomment %}
+                    <i class="text-center border-warning" style="padding: 25px 10px; margin: 10px 20px; border-radius: 20px; border: solid 1px;">{{i.body|capfirst}}</i>
+                    <div class="col-md-4 mt-3">
+                        <hr>
+                        <div>
+                            <a href="{{ i.img1.url }} " target="_blank"> <img src="{{ i.img1.url }}" class="img-responsive border-danger" style="border: solid 2px; width: 12vh; height: 12vh; position: relative; top:28px; left: 10%;" alt="img1"></a>
+                        </div>
+                        <div>
+                            <a href="{{ i.img2.url }}" target="_blank"><img src="{{ i.img2.url }}" class="img-responsive border-danger" style="border: solid 2px; width: 12vh; height: 12vh; position: relative; top:-50px; left: 137%;" alt="img2"></a>
+                        </div>
+                        <div>
+                            <a href="{{ i.img3.url }}" target="_blank"> <img src="{{ i.img3.url }}" class="img-responsive border-danger" style="border: solid 2px; width: 12vh; height: 12vh; position: relative; top:-128px; left: 265%;" alt="img3"></a>
+                        </div>
+                    </div>
+                </div>
+                <center class="mb-md-5">
+                    <a href="{% url 'update' i.id %}" class="btn btn-outline-primary">Update</a>
+                    <a href="{% url 'delete' i.id %}" class="btn btn-outline-danger">Delete</a>
+                </center>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<br>
+<hr>
+</body>
+</html>
+
